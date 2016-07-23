@@ -9,11 +9,11 @@ package 'vim'
 package 'unzip'
 
 locales "Add locales" do
-  locales node["look_and_feel-tlq"]["additional_locales"]
+  locales node["look_and_feel-dhn"]["additional_locales"]
 end
 
 # Add a banner to ssh login if we're in the production environment
-if node[:environment] == 'production'
+if node[:environment] == 'production' or 'staging'
   sshd_config = '/etc/ssh/sshd_config'
 
   seds = []
@@ -28,7 +28,7 @@ if node[:environment] == 'production'
     owner 'root'
     group 'root'
     mode '0644'
-    source 'production_ssh_banner.erb'
+    source "#{node[:environment]}_ssh_banner.erb"
   end
 
   bash 'Adding visual flags for production environment' do
