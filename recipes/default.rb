@@ -13,7 +13,7 @@ locales "Add locales" do
 end
 
 # Add a banner to ssh login if we're in the production environment
-if node[:environment] == 'production' or 'staging'
+if node[:environment] == 'production' or node[:environment] == 'staging'
   sshd_config = '/etc/ssh/sshd_config'
 
   seds = []
