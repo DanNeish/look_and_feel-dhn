@@ -28,7 +28,7 @@ if node[:chef_environment] == 'production' or node[:chef_environment] == 'stagin
     owner 'root'
     group 'root'
     mode '0644'
-    source "#{node[:environment]}_ssh_banner.erb"
+    source "#{node[:chef_environment]}_ssh_banner.erb"
   end
 
   bash 'Adding visual flags for production environment' do
