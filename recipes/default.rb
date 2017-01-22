@@ -12,8 +12,8 @@ locales "Add locales" do
   locales node["look_and_feel-dhn"]["additional_locales"]
 end
 
-# Add a banner to ssh login if we're in the production environment
-if node.chef_environment == 'production' or node.chef_environment == 'staging'
+# Add a banner to ssh login if we're in an environment other than default
+unless node.chef_environment == '_default'
   sshd_config = '/etc/ssh/sshd_config'
 
   seds = []
