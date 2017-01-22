@@ -13,7 +13,7 @@ locales "Add locales" do
 end
 
 # Add a banner to ssh login if we're in the production environment
-if node[:chef_environment] == 'production' or node[:chef_environment] == 'staging'
+if node.chef_environment == 'production' or node.chef_environment == 'staging'
   sshd_config = '/etc/ssh/sshd_config'
 
   seds = []
@@ -28,7 +28,7 @@ if node[:chef_environment] == 'production' or node[:chef_environment] == 'stagin
     owner 'root'
     group 'root'
     mode '0644'
-    source "#{node[:chef_environment]}_ssh_banner.erb"
+    source "#{node.chef_environment}_ssh_banner.erb"
   end
 
   bash 'Adding visual flags for production environment' do
